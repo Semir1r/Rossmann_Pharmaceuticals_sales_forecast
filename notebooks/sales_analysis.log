@@ -1,0 +1,13 @@
+2025-01-02 15:37:33,242 - INFO - Logger setup complete. Logging to both file and console.
+2025-01-02 15:37:33,245 - INFO - Merging the train and store datasets on the 'Store' column.
+2025-01-02 15:37:34,224 - INFO - Merge completed. The merged dataset has 871135 rows and 18 columns.
+2025-01-02 15:55:24,321 - INFO - Logger setup complete. Logging to both file and console.
+2025-01-02 15:55:31,542 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:55:55,108 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:55:58,959 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:56:39,911 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:57:48,372 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:58:01,586 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:58:20,620 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 15:59:49,142 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-02 16:01:43,758 - INFO - Starting seasonal purchase behavior analysis.
