@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # Create a file handler to log to a file
-file_handler = logging.FileHandler('sales_analysis.log', mode='w')  # 'w' to overwrite the file each run
+file_handler = logging.FileHandler('sales_analysis.log', mode='w')
 file_handler.setLevel(logging.INFO)
 
 # Create a stream handler to log to the notebook console

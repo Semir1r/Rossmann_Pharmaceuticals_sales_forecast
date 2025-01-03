@@ -1,9 +1,9 @@
 2025-01-02 15:37:33,242 - INFO - Logger setup complete. Logging to both file and console.
 2025-01-02 15:37:33,245 - INFO - Merging the train and store datasets on the 'Store' column.
 2025-01-02 15:37:34,224 - INFO - Merge completed. The merged dataset has 871135 rows and 18 columns.
-2025-01-02 15:55:24,321 - INFO - Logger setup complete. Logging to both file and console.
-2025-01-02 15:55:31,542 - INFO - Starting seasonal purchase behavior analysis.
-2025-01-02 15:55:55,108 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-03 15:03:05,879 - INFO - Merging the train and store datasets on the 'Store' column.
+2025-01-03 15:03:06,554 - INFO - Merge completed. The merged dataset has 871135 rows and 18 columns.
+ INFO - Starting seasonal purchase behavior analysis.
 2025-01-02 15:55:58,959 - INFO - Starting seasonal purchase behavior analysis.
 2025-01-02 15:56:39,911 - INFO - Starting seasonal purchase behavior analysis.
 2025-01-02 15:57:48,372 - INFO - Starting seasonal purchase behavior analysis.
@@ -11,3 +11,17 @@
 2025-01-02 15:58:20,620 - INFO - Starting seasonal purchase behavior analysis.
 2025-01-02 15:59:49,142 - INFO - Starting seasonal purchase behavior analysis.
 2025-01-02 16:01:43,758 - INFO - Starting seasonal purchase behavior analysis.
+2025-01-03 15:02:32,793 - INFO - Starting outlier detection and removal.
+2025-01-03 15:02:32,795 - INFO - Checking outliers for column: Sales
+2025-01-03 15:02:32,910 - INFO - Found 26694 outliers in column Sales.
+2025-01-03 15:02:33,085 - INFO - Outliers removed from column Sales.
+2025-01-03 15:02:33,090 - INFO - Checking outliers for column: Customers
+2025-01-03 15:02:33,162 - INFO - Found 22641 outliers in column Customers.
+2025-01-03 15:02:33,326 - INFO - Outliers removed from column Customers.
+2025-01-03 15:02:33,330 - INFO - Processing test dataset.
+2025-01-03 15:02:33,333 - INFO - Starting outlier detection and removal.
+2025-01-03 15:02:33,335 - INFO - Processing store dataset.
+2025-01-03 15:02:33,338 - INFO - Starting outlier detection and removal.
+2025-01-03 15:02:33,341 - INFO - Checking outliers for column: CompetitionDistance
+2025-01-03 15:02:33,355 - INFO - Found 108 outliers in column CompetitionDistance.
+2025-01-03 15:02:33,361 - INFO - Outliers removed from column CompetitionDistance.

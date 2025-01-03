@@ -25,21 +25,22 @@ def analyze_store_opening_closing_behavior(merged_df, sales_column, customers_co
     plt.ylabel('Number of Customers')
     plt.show()
 
-    # 2. Analyze day-wise trends for customer behavior during store opening and closing
-    plt.figure(figsize=(12, 6))
-    sns.lineplot(x=merged_df[date_column].dt.day_name(), y=customers_column, hue=open_column, data=merged_df, ci=None)
-    plt.title('Customer Behavior by Day of Week (Open vs Closed)')
-    plt.xlabel('Day of the Week')
-    plt.ylabel('Number of Customers')
+   # 1. Facet Grid for Customer Behavior by Day of the Week
+    g = sns.FacetGrid(merged_df, col=open_column, height=5, aspect=1.5, sharey=True)
+    g.map(sns.lineplot, merged_df[date_column].dt.day_name(), customers_column, ci=None)
+    g.set_titles("{col_name}")
+    g.set_axis_labels("Day of the Week", "Number of Customers")
+    g.fig.suptitle("Customer Behavior by Day of Week (Open vs Closed)", y=1.02)
     plt.show()
 
-    # 3. Analyze store sales by day-wise trends
-    plt.figure(figsize=(12, 6))
-    sns.lineplot(x=merged_df[date_column].dt.day_name(), y=sales_column, hue=open_column, data=merged_df, ci=None)
-    plt.title('Sales by Day of Week (Open vs Closed)')
-    plt.xlabel('Day of the Week')
-    plt.ylabel('Sales')
+    # 2. Facet Grid for Sales by Day of the Week
+    g = sns.FacetGrid(merged_df, col=open_column, height=5, aspect=1.5, sharey=True)
+    g.map(sns.lineplot, merged_df[date_column].dt.day_name(), sales_column, ci=None)
+    g.set_titles("{col_name}")
+    g.set_axis_labels("Day of the Week", "Sales")
+    g.fig.suptitle("Sales by Day of Week (Open vs Closed)", y=1.02)
     plt.show()
+
 
     # Summary statistics of sales and customer behavior when open vs closed
     open_closed_summary = merged_df.groupby(open_column)[[sales_column, customers_column]].agg(['mean', 'median', 'std', 'count'])

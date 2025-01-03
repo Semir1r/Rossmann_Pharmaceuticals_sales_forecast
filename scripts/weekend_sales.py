@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-
 def analyze_weekday_open_stores_and_weekend_sales(merged_df, sales_column, date_column, store_column):
     """
     Identify stores open on all weekdays (Monday to Friday) and analyze how that affects their sales on weekends.
