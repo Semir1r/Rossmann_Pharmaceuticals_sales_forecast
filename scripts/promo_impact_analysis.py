@@ -1,4 +1,3 @@
-# promo_analysis.py
 import matplotlib.pyplot as plt
 
 def analyze_promo_impact(cleaned_data):
