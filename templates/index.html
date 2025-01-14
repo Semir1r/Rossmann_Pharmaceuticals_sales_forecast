@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 60px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+        }
+        .prediction {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sales Prediction</h1>
+    <p>Enter 30 values for the sliding window (separated by input boxes):</p>
+    
+    <form method="POST">
+        <div>
+            <!-- Create 30 input fields -->
+            {% for i in range(30) %}
+            <input type="number" name="data[]" step="0.01" required>
+            {% endfor %}
+        </div>
+        <button type="submit">Predict Sales</button>
+    </form>
+
+    <!-- Display errors -->
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display prediction -->
+    {% if prediction %}
+    <p class="prediction">Predicted Sales: {{ prediction }}</p>
+    {% endif %}
+</body>
+</html>
