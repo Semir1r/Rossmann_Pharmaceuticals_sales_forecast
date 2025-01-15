@@ -7,56 +7,99 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
         }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 600px;  /* Increased container width */
+            text-align: left;
+        }
+
+        .input-group {
+            margin-bottom: 15px; /* Increased margin for more spacing */
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
         input {
-            margin: 5px;
-            padding: 10px;
-            width: 60px;
+            width: 100%;
+            padding: 12px; /* Increased padding for larger input boxes */
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
+
         button {
-            padding: 10px 20px;
-            margin: 10px;
+            padding: 12px 20px;
+            margin-top: 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         .error {
             color: red;
+            margin-top: 20px;
         }
+
         .prediction {
             color: green;
             font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+
     <h1>Sales Prediction</h1>
-    <p>Enter 30 values for the sliding window (separated by input boxes):</p>
-    
-    <form method="POST">
-        <div>
-            <!-- Create 30 input fields -->
-            {% for i in range(30) %}
-            <input type="number" name="data[]" step="0.01" required>
+    <div class="container">
+        <form action="/predict" method="POST">
+            {% for label in labels %}
+                <div class="input-group">
+                    <label for="{{ label }}">{{ label.replace('_', ' ').title() }}</label>
+                    <input type="number" name="data[]" step="0.01" required>
+                </div>
             {% endfor %}
-        </div>
-        <button type="submit">Predict Sales</button>
-    </form>
+            <button type="submit">Predict Sales</button>
+        </form>
 
-    <!-- Display errors -->
-    {% if error %}
-    <p class="error">{{ error }}</p>
-    {% endif %}
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
 
-    <!-- Display prediction -->
-    {% if prediction %}
-    <p class="prediction">Predicted Sales: {{ prediction }}</p>
-    {% endif %}
+        {% if prediction %}
+            <p class="prediction">Predicted Sales: {{ prediction }}</p>
+        {% endif %}
+    </div>
+
 </body>
 </html>

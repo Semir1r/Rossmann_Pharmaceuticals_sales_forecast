@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import numpy as np
 import joblib
 
@@ -16,36 +16,44 @@ try:
 except Exception as e:
     raise RuntimeError(f"Error loading model or scaler: {e}")
 
-# Home route with a form
-@app.route("/", methods=["GET", "POST"])
+# Root endpoint
+@app.route("/", methods=["GET"])
 def home():
-    if request.method == "POST":
-        try:
-            # Get input values from the form
-            input_data = request.form.getlist("data[]")
-            input_data = [float(value) for value in input_data]
+    return jsonify("Welcome to the LSTM Sales Prediction API!")
 
-            # Validate input size (30 values)
-            if len(input_data) != 30:
-                return render_template("index.html", error="Please enter exactly 30 values.")
+# Prediction endpoint
+@app.route("/predict", methods=["POST"])
+def predict_sales():
+    try:
+        # Parse the input JSON request
+        input_data = request.json
+        if not input_data or "data" not in input_data:
+            return jsonify({"error": "Missing 'data' field in the request."}), 400
 
-            # Convert to numpy array and scale
-            data = np.array(input_data).reshape(-1, 1)
-            scaled_data = scaler.transform(data)
+        # Extract and validate input data
+        data = np.array(input_data["data"]).reshape(-1, 1)
+        if data.shape[0] != 30:  # Assuming window_size=30
+            return jsonify({
+                "error": f"Input data must have 30 values (sliding window size). Provided: {data.shape[0]}"
+            }), 400
 
-            # Reshape for LSTM input
-            reshaped_data = scaled_data.reshape(1, 30, 1)
+        # Scale input data
+        scaled_data = scaler.transform(data)
 
-            # Predict sales
-            prediction = model.predict(reshaped_data)
-            predicted_sales = scaler.inverse_transform(prediction)
+        # Reshape for LSTM input
+        reshaped_data = scaled_data.reshape(1, 30, 1)
 
-            return render_template("index.html", prediction=round(predicted_sales[0][0], 2))
-        except Exception as e:
-            return render_template("index.html", error=f"An error occurred: {e}")
+        # Make prediction
+        prediction = model.predict(reshaped_data)
 
-    # Render the form initially
-    return render_template("index.html")
+        # Inverse transform the prediction
+        predicted_sales = scaler.inverse_transform(prediction)
+
+        # Return the prediction
+        return jsonify({"predicted_sales": float(predicted_sales[0][0])})
+
+    except Exception as e:
+        return jsonify({"error": f"Prediction failed: {str(e)}"}), 500
 
 
 if __name__ == "__main__":
