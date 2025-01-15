@@ -2,3 +2,4 @@ venv
 data
 notebooks/sales_analysis.log
 sales_analysis.log
+notebooks/random_forest_model_2025-01-15-08-26-58.pkl
